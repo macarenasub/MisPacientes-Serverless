@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Dcostors = mongoose.model(
+const Doctors = mongoose.model(
   'Doctor',
   new Schema({
     name: { type: String, required: true },
@@ -10,6 +10,7 @@ const Dcostors = mongoose.model(
     mail: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    salt: String,
   }),
 );
 

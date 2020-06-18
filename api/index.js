@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const patients = require('./routes/patients');
 const doctors = require('./routes/doctors');
 const shifts = require('./routes/shifts');
+const auth = require('./routes/auth');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -16,5 +18,6 @@ app.get('/', (req, res) => {
 app.use('/patients', patients);
 app.use('/doctors', doctors);
 app.use('/shifts', shifts);
+app.use('/auth', auth);
 
 module.exports = app;

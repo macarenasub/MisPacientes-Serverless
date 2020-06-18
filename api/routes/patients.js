@@ -1,5 +1,6 @@
 const express = require('express');
 const Patients = require('../models/Patients');
+const isAuthenticated = require('../auth');
 
 const router = express.Router();
 
@@ -15,15 +16,15 @@ router.get('/:id', (req, res) => {
     .then((x) => res.status(200).send(x));
 });
 
-router.post('/', (req, res) => {
+router.post('/', isAuthenticated, (req, res) => {
   Patients.create(req.body).then((x) => res.status(201).send(x));
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', isAuthenticated, (req, res) => {
   Patients.findByIdAndUpdate(req.params.id, req.body).then((x) => res.status(200).send(x));
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isAuthenticated, (req, res) => {
   Patients.findOneAndDelete(req.params.id)
     .exec()
     .then(() => res.sendStatus(204));
